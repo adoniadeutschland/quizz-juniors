@@ -1,4 +1,9 @@
-javascript jeopardy
+# quizz-juniors
+
+Ein Spiel fürs Abendprogramm der Juniors
+
+## javascript jeopardy
+
 ===================
 
 Javascript Jeopardy is a single page, self contained, jeopardy board rendered using Twitter Bootstrap and Jquery.
@@ -9,6 +14,6 @@ builder.html is a page build in Twitter Bootstrap and Angular.JS for creating an
 
 Code breakdown available on my blog at [mc706.com] (http://mc706.com/tip_trick_snippets/43/javascript-jeopardy/)
 
-Demo
-----
+## Demo
+
 [Demo] (http://mc706.github.io/javascript-jeopardy/index.html)
