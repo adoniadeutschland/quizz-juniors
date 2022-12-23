@@ -1,0 +1,597 @@
+<!DOCTYPE HTML>
+
+<html manifest="quizz.appcache>
+	<head>
+		<title>Adonia Bibel Quizz</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		
+		<style>
+			a {
+				text-decoration: none;
+				color: black;
+				hight: 45px;
+			}
+			
+			.standardp {
+				width: 150px;
+				hight: 90px;
+				background-color: #ffff00;
+				border-radius: 5px;
+				border: 1px solid #555555;
+				float: left;
+				text-align: center;
+				font-size: 15px;
+				text-decoration: none;
+				font-family: Sans-serif;
+				font-weight: bold;
+				margin: 2px;
+				padding-top: 6px;
+				padding-bottom: 6px;
+			}
+
+			.standardf {
+				width: 150px;
+				hight: 90px;
+				background-color: #00ff00;
+				border-radius: 5px;
+				border: 1px solid #555555;
+				float: left;
+				text-align: center;
+				font-size: 50px;
+				text-decoration: none;
+				font-family: Sans-serif;
+				font-weight: bold;
+				margin: 2px;
+				padding-top: 6px;
+				padding-bottom: 6px;
+			}
+			
+			.standard {
+				width: 150px;
+				hight: 50px;
+				background-color: #ffffff;
+				border-radius: 5px;
+				border: 1px solid #555555;
+				float: left;
+				text-align: center;
+				font-size: 45px;
+				text-decoration: none;
+			}
+
+			.button {
+				width: 50px;
+				hight: 30px;
+				background-color: #ff5555;
+				border: 1px solid #555555;
+				border-radius: 5px;
+				float: right;
+				text-align: center;
+				font-size: 30px;
+				text-decoration: none;
+				margin:10px;
+				padding-bottom: 5px;
+			}
+			
+			.bingo {
+				background-color: #ff0000;
+				color: #ffffff;
+			}
+
+		.reihe {
+				text-align: center;
+				float: left;
+			}
+			
+		.fragen {
+		}
+		
+		.antworten {
+			position: absolute;
+			left: 100px;
+			top: 150px;
+			width: 780px;
+			background-color: #ffffff;
+			z-index: -1;
+			font-family: Sans-serif;
+			visibility: hidden;
+		}
+		
+		.loesung {
+			position: absolute;
+			left: 150px;
+			top: 150px;
+			width: 780px;
+			background-color: #987654;
+			z-index: -1;
+			font-family: Sans-serif;
+			visibility: hidden;
+		}
+		</style>
+		
+		<script type="text/javascript" language="JavaScript"> 
+		
+			<!-- Begin 
+				function neueFarbe(objektID,frageID) { 
+					var farbe = document.getElementById(objektID).classList;
+					if (farbe == 'standard' ||  farbe == 'standardf' ) {
+						document.getElementById(objektID).classList.add("bingo");
+						document.getElementById(frageID).style.zIndex = "2";
+						document.getElementById(frageID).style.visibility = "visible";
+					}  else {
+						document.getElementById(objektID).classList.remove("bingo");
+					} 
+				}
+				function loesung(btlID,btxID,antwortID) { 
+					document.getElementById(btlID).style.visibility = "hidden";
+					document.getElementById(btxID).style.visibility = "visible";
+					document.getElementById(antwortID).style.color = "#ff0000";
+				}
+				function neueFrage(loesungID,btxID) { 
+					document.getElementById(loesungID).style.zIndex = "-1";
+					document.getElementById(loesungID).style.visibility = "hidden";
+					document.getElementById(btxID).style.visibility = "hidden";
+				}
+			// End --> 
+		</script>
+
+	</head>
+	<body style="width: 1000px; background-color: black;">
+	<div id="quizz" style="background-color: blue; position: relativ; z-index: 2; text-align: center;">
+		<h1 style="font-family: sans-serif; color: #fff;">Adonia Bibel Quizz</h1>
+		<div class="antworten" id="f11">
+			<h2>Aus wie vielen Büchern besteht die Bibel?</h2>
+			<hr />
+			<h3>
+				<div id="a11">A - 44</div><br />
+				<div id="b11">B - 66</div><br />
+				<div id="c11">C - 88</div><br />
+				<div id="d11">D - 90</div>
+			<hr />
+				<a  id="btx11" style="visibility: hidden;" href="javascript:neueFrage('f11','btx11')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl11" href="javascript:loesung('btl11','btx11','b11')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f21">
+			<h2>Womit machte Jesus mehr als 5000 Menschen satt?</h2>
+			<hr />
+			<h3>
+				<div id="a21">A - 4 halbe Hänchen und 2 Brötchen</div><br />
+				<div id="b21">B - 3 Datteln und 3 Feigen</div><br />
+				<div id="c21">C - 2 Brote und 5 Fische</div><br />
+				<div id="d21">D - 2 Portionen Pommes mit Ketchup</div>
+			<hr />
+				<a  id="btx21" style="visibility: hidden;" href="javascript:neueFrage('f21','btx21')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl21" href="javascript:loesung('btl21','btx21','c21')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f31">
+			<h2>Wer findet Mose als Baby im Schilf? </h2>
+			<hr />
+			<h3>
+				<div id="a31">A - Moses Schwester Mirjam</div><br />
+				<div id="b31">B - Der Pharao</div><br />
+				<div id="c31">C - Ein Ägypter</div><br />
+				<div id="d31">D - Die Tochter des Pharaos</div>
+			<hr />
+				<a  id="btx31" style="visibility: hidden;" href="javascript:neueFrage('f31','btx31')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl31" href="javascript:loesung('btl31','btx31','d31')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f41">
+			<h2>Welche Vögel lässt Noah zuerst aus der Arche fliegen? </h2>
+			<hr />
+			<h3>
+				<div id="a41">A - Rabe und Taube</div><br />
+				<div id="b41">B - Spatz und Adler</div><br />
+				<div id="c41">C - Specht und Papagei</div><br />
+				<div id="d41">D - Storch und Taube</div>
+			<hr />
+				<a  id="btx41" style="visibility: hidden;" href="javascript:neueFrage('f41','btx41')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl41" href="javascript:loesung('btl41','btx41','a41')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f51">
+			<h2>Wie viele Verse enthält die Bibel?</h2>
+			<hr />
+			<h3>
+				<div id="a51">A -  1.000</div><br />
+				<div id="b51">B - 12.000</div><br />
+				<div id="c51">C - 21.000</div><br />
+				<div id="d51">D - 31.000</div>
+			<hr />
+				<a  id="btx51" style="visibility: hidden;" href="javascript:neueFrage('f51','btx51')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl51" href="javascript:loesung('btl51','btx51','d51')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f12">
+			<h2>Eltern merken einen Tag lang nicht, dass ihr Kind weg ist. </h2>
+			<hr />
+			<h3>
+				<div id="a12">A - Daniel bei den Löwen im Zoo</div><br />
+				<div id="b12">B - Der zwölfjährige Jesus im Tempel</div><br />
+				<div id="c12">C - Der zehnjährige Johannes im Jordan</div><br />
+				<div id="d12">D - David bei den Schafen auf dem Feld</div>
+			<hr />
+				<a  id="btx12" style="visibility: hidden;" href="javascript:neueFrage('f12','btx12')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl12" href="javascript:loesung('btl12','btx12','b12')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f22">
+			<h2>Unzählige Soldaten sterben im Meer.</h2>
+			<hr />
+			<h3>
+				<div id="a22">A - Saulus verfolgt die Christen</div><br />
+				<div id="b22">B - Gideons Heer wird verfolgt</div><br />
+				<div id="c22">C - Nebukadnezar verfolgt die Juden</div><br />
+				<div id="d22">D - Die Ägypter verfolgen die Juden</div>
+			<hr />
+				<a  id="btx22" style="visibility: hidden;" href="javascript:neueFrage('f22','btx22')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl22" href="javascript:loesung('btl22','btx22','d22')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f32">
+			<h2>Eltern verstecken ihr Baby 3 Monate lang. </h2>
+			<hr />
+			<h3>
+				<div id="a32">A - Jesus wird geboren</div><br />
+				<div id="b32">B - Maria wird geboren</div><br />
+				<div id="c32">C - Mose wird geboren</div><br />
+				<div id="d32">D - Esther wird geboren</div>
+			<hr />
+				<a  id="btx32" style="visibility: hidden;" href="javascript:neueFrage('f32','btx32')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl32" href="javascript:loesung('btl32','btx32','c32')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f42">
+			<h2>Es rauscht, als würde ein Sturm vom Himmel herabwehen, dann ist etwas wie Feuer zu sehen. </h2>
+			<hr />
+			<h3>
+				<div id="a42">A - Weihnachten: Jesus wird geboren</div><br />
+				<div id="b42">B - Pfingsten: Der Heilige Geist kommt</div><br />
+				<div id="c42">C - Himmelfahrt: Jesus fährt in den Himmel auf</div><br />
+				<div id="d42">D - Ostern: Jesus ist auferstanden</div>
+			<hr />
+				<a  id="btx42" style="visibility: hidden;" href="javascript:neueFrage('f42','btx42')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl42" href="javascript:loesung('btl42','btx42','b42')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f52">
+			<h2>Ein junger Mann wird in ein fremdes Land verschleppt und bekommt dort einen neuen Namen. </h2>
+			<hr />
+			<h3>
+				<div id="a52">A - Daniel wird nach Babylon verschleppt</div><br />
+				<div id="b52">B - David wird nach Bethlehem verschleppt</div><br />
+				<div id="c52">C - Mose wird nach Ägypten verschleppt</div><br />
+				<div id="d52">D - Nehemia wird nach Jerusalem verschleppt</div>
+			<hr />
+				<a  id="btx52" style="visibility: hidden;" href="javascript:neueFrage('f52','btx52')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl52" href="javascript:loesung('btl52','btx52','a52')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f13">
+			<h2 style="font-size: 20px;">Herrlich ist es hier! Diesen Ort hat Gott so wunderbar gemacht. <br />Mir und meiner Frau geht es richtig gut. Wir leben so, wie es uns gefällt. <br /> Wir essen, was uns schmeckt und wir gehen hin, wohin wir wollen. <br /> Nur ein einziges Verbot hat uns Gott gegeben.</h2>
+			<hr />
+			<h3>
+				<div id="a13">A - Jakob</div><br />
+				<div id="b13">B - Abraham</div><br />
+				<div id="c13">C - Adam</div><br />
+				<div id="d13">D - David</div>
+			<hr />
+				<a  id="btx13" style="visibility: hidden;" href="javascript:neueFrage('f13','btx13')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl13" href="javascript:loesung('btl13','btx13','c13')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f23">
+			<h2 style="font-size: 20px;">Gerade hat Gott zu mir gesprochen. Er hat mir gesagt, dass ich in ein anderes Land ziehen soll. Dabei bin ich doch schon 75 Jahre alt. Ich weiß gar nicht, was ich davon halten soll.</h2>
+			<hr />
+			<h3>
+				<div id="a23">A - Kain</div><br />
+				<div id="b23">B - Abraham</div><br />
+				<div id="c23">C - Mose</div><br />
+				<div id="d23">D - Saul</div>
+			<hr />
+				<a  id="btx23" style="visibility: hidden;" href="javascript:neueFrage('f23','btx23')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl23" href="javascript:loesung('btl23','btx23','b23')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>		
+		<div class="antworten" id="f33">
+			<h2 style="font-size: 20px;">Ich bin gerade echt zornig. Es gefällt mir überhaupt nicht, dass Gott so viel Geduld hat. Genau das hab ich vermutet, als ich noch zu Hause war. Ich hab gewusst: Gott ist voll Liebe und Erbarmen. Darum wollte ich ja auch gar nicht erst nach Ninive gehen.</h2>
+			<hr />
+			<h3>
+				<div id="a33">A - Josua</div><br />
+				<div id="b33">B - Jeremia</div><br />
+				<div id="c33">C - Jesaia</div><br />
+				<div id="d33">D - Jona</div>
+			<hr />
+				<a  id="btx33" style="visibility: hidden;" href="javascript:neueFrage('f33','btx33')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl33" href="javascript:loesung('btl33','btx33','d33')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>	
+		<div class="antworten" id="f43">
+			<h2 style="font-size: 20px;">Was ich erlebt habe, ist kaum zu glauben! Stellt euch vor: Ich soll König werden. Dabei versteh ich doch überhaupt nichts vom Regieren. Und wie man mit richtigen Waffen in den Krieg zieht, weiß ich auch nicht.</h2>
+			<hr />
+			<h3>
+				<div id="a43">A - David</div><br />
+				<div id="b43">B - Jakob</div><br />
+				<div id="c43">C - Esau</div><br />
+				<div id="d43">D - Josef</div>
+			<hr />
+				<a  id="btx43" style="visibility: hidden;" href="javascript:neueFrage('f43','btx43')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl43" href="javascript:loesung('btl43','btx43','a43')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>	
+		<div class="antworten" id="f53">
+			<h2 style="font-size: 20px;">Bevor Jesus gefangen genommen wurde, habe ich ganz schön angegeben. Ich habe so getan, als wäre ich sein zuverlässigster Freund. Und dann diese Pleite. Dreimal habe ich behauptet, Jesus gar nicht zu kennen.</h2>
+			<hr />
+			<h3>
+				<div id="a53">A - Judas</div><br />
+				<div id="b53">B - Petrus</div><br />
+				<div id="c53">C - Andreas</div><br />
+				<div id="d53">D - Jakobus</div>
+			<hr />
+				<a  id="btx53" style="visibility: hidden;" href="javascript:neueFrage('f53','btx53')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl53" href="javascript:loesung('btl53','btx53','b53')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f14">
+			<h2>Ein Traum von sieben fetten und sieben mageren Kühen.</h2>
+			<hr />
+			<h3>
+				<div id="a14">A - Josef deutet die Träume des Pharaos</div><br />
+				<div id="b14">B - Josef deutet die Träume des Bäckers und des Mundschenks</div><br />
+				<div id="c14">C - Der Pharao in der Finanzkrise</div><br />
+				<div id="d14">D - Josef träumt von seiner Zukunft</div>
+			<hr />
+				<a  id="btx14" style="visibility: hidden;" href="javascript:neueFrage('f14','btx14')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl14" href="javascript:loesung('btl14','btx14','a14')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f24">
+			<h2>Eine Frau bekommt ein Kind mit 90 Jahren.</h2>
+			<hr />
+			<h3>
+				<div id="a24">A - Isaak und Rebekka</div><br />
+				<div id="b24">B - Adam und Eva</div><br />
+				<div id="c24">C - Maria und Josef</div><br />
+				<div id="d24">D - Abraham und Sarah</div>
+			<hr />
+				<a  id="btx24" style="visibility: hidden;" href="javascript:neueFrage('f24','btx24')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl24" href="javascript:loesung('btl24','btx24','d24')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f34">
+			<h2>Ein Bauwerk, 1000 Sprachen</h2>
+			<hr />
+			<h3>
+				<div id="a34">A - Salomo lässt den Tempel bauen</div><br />
+				<div id="b34">B - Jerusalem wird wieder aufgebaut</div><br />
+				<div id="c34">C - Turmbau zu Babel</div><br />
+				<div id="d34">D - Der Bau der Pyramiden</div>
+			<hr />
+				<a  id="btx34" style="visibility: hidden;" href="javascript:neueFrage('f34','btx34')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl34" href="javascript:loesung('btl34','btx34','c34')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f44">
+			<h2>Jerusalem jubelt!</h2>
+			<hr />
+			<h3>
+				<div id="a44">A - Die Judäer kämpfen gegen Jerusalem</div><br />
+				<div id="b44">B - David flieht aus Jerusalem</div><br />
+				<div id="c44">C - Jesus zieht nach Jerusalem</div><br />
+				<div id="d44">D - Salomo wird König über Jerusalem</div>
+			<hr />
+				<a  id="btx44" style="visibility: hidden;" href="javascript:neueFrage('f44','btx44')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl44" href="javascript:loesung('btl44','btx44','c44')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f54">
+			<h2>Ein Vater vergiebt.</h2>
+			<hr />
+			<h3>
+				<div id="a54">A - Der verlorene Sohn</div><br />
+				<div id="b54">B - Der Schatz im Acker </div><br />
+				<div id="c54">C - Der hartherzige Schuldner</div><br />
+				<div id="d54">D - Das Senfkorn</div>
+			<hr />
+				<a  id="btx54" style="visibility: hidden;" href="javascript:neueFrage('f54','btx54')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl54" href="javascript:loesung('btl54','btx54','a54')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>		
+		<div class="antworten" id="f15">
+			<h2>Schlange</h2>
+			<hr />
+			<h3>
+				<div id="a15">A - Jesus in der Wüste</div><br />
+				<div id="b15">B - Mose in Ägypten</div><br />
+				<div id="c15">C - Adam und Eva im Garten Eden</div><br />
+				<div id="d15">D - Die Arche Noah</div>
+			<hr />
+				<a  id="btx15" style="visibility: hidden;" href="javascript:neueFrage('f15','btx15')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl15" href="javascript:loesung('btl15','btx15','c15')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f25">
+			<h2>Brot</h2>
+			<hr />
+			<h3>
+				<div id="a25">A - Jesus und seine Jünger beim letzten Abendmahl</div><br />
+				<div id="b25">B - Die Israeliten in der Wüste</div><br />
+				<div id="c25">C - Die Hochzeit in Kana</div><br />
+				<div id="d25">D - David wird König</div>
+			<hr />
+				<a  id="btx25" style="visibility: hidden;" href="javascript:neueFrage('f25','btx25')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl25" href="javascript:loesung('btl25','btx25','a25')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f35">
+			<h2>Wellen</h2>
+			<hr />
+			<h3>
+				<div id="a35">A - Jesus macht 5000 Menschen satt</div><br />
+				<div id="b35">B - Der verlorene Sohn</div><br />
+				<div id="c35">C - Jesus geht auf dem Wasser</div><br />
+				<div id="d35">D - Das letzte Abendmahl</div>
+			<hr />
+				<a  id="btx35" style="visibility: hidden;" href="javascript:neueFrage('f35','btx35')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl35" href="javascript:loesung('btl35','btx35','c35')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f45">
+			<h2>Gefängnis</h2>
+			<hr />
+			<h3>
+				<div id="a45">A - Daniel in Babylon</div><br />
+				<div id="b45">B - Jesus in Jerusalem</div><br />
+				<div id="c45">C - Ruth in Juda</div><br />
+				<div id="d45">D - Josef in Ägypten</div>
+			<hr />
+				<a  id="btx45" style="visibility: hidden;" href="javascript:neueFrage('f45','btx45')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl45" href="javascript:loesung('btl45','btx45','d45')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f55">
+			<h2>Schaf</h2>
+			<hr />
+			<h3>
+				<div id="a55">A - Psalm 76</div><br />
+				<div id="b55">B - Psalm 4</div><br />
+				<div id="c55">C - Psalm 106</div><br />
+				<div id="d55">D - Psalm 23</div>
+			<hr />
+				<a  id="btx55" style="visibility: hidden;" href="javascript:neueFrage('f55','btx55')"><input type="submit" class="button" value="x" /></a>
+				<a  id="btl55" href="javascript:loesung('btl55','btx55','d55')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f16">
+			<h2>Wie viele Psalmen gibt es in der Bibel?</h2>
+			<hr />
+			<h3>
+				<div id="btx16" style="visibility: hidden;">150
+			<hr />
+				<a   href="javascript:neueFrage('f16','btx16')"><input type="submit" class="button" value="x" /></a></div>
+				<a  id="btl16" href="javascript:loesung('btl16','btx16','btx16')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f26">
+			<h2>Wie viele Menschen wurden durch die Arche gerettet?</h2>
+			<hr />
+			<h3>
+				<div id="btx26" style="visibility: hidden;">8
+			<hr />
+				<a href="javascript:neueFrage('f26','btx26')"><input type="submit" class="button" value="x" /></a></div>
+				<a  id="btl26" href="javascript:loesung('btl26','btx26','btx26')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f36">
+			<h2>Wie lange dauerte die Gefangenschaft in Babylon?</h2>
+			<hr />
+			<h3>
+				<div id="btx36" style="visibility: hidden;">70 Jahre
+			<hr />
+				<a   href="javascript:neueFrage('f36','btx36')"><input type="submit" class="button" value="x" /></a></div>
+				<a  id="btl36" href="javascript:loesung('btl36','btx36','btx36')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f46">
+			<h2>Wie viele Bibeln werden jährlich weltweit verkauft? </h2>
+			<hr />
+			<h3>
+				<div id="btx46" style="visibility: hidden;">44 Millionen
+			<hr />
+				<a   href="javascript:neueFrage('f46','btx46')"><input type="submit" class="button" value="x" /></a></div>
+				<a  id="btl46" href="javascript:loesung('btl46','btx46','btx46')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>
+		<div class="antworten" id="f56">
+			<h2>In wieviele Sprachen ist das Neue Testament übersetzt?</h2>
+			<hr />
+			<h3>
+				<div id="btx56" style="visibility: hidden;">1012 - und es werden noch mehr!
+			<hr />
+				<a   href="javascript:neueFrage('f56','btx56')"><input type="submit" class="button" value="x" /></a></div>
+				<a  id="btl56" href="javascript:loesung('btl56','btx56','btx56')"><input type="submit" class="button" value=">" /></a>
+			</h3>
+		</div>	
+		<div class="reihe">
+				<div id="g01" class="standardp"><a href="javascript:neueFarbe('g01')">&nbsp;<br />Knifflige Frage<br />&nbsp;</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g02" class="standardp"><a href="javascript:neueFarbe('g02')">&nbsp;<br />Tatort<br />&nbsp;</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g03" class="standardp"><a href="javascript:neueFarbe('g03')">&nbsp;<br />Wer bin ich?<br />&nbsp;</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g04" class="standardp"><a href="javascript:neueFarbe('g04')">&nbsp;<br />Welche Geschichte ist das?</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g05" class="standardp"><a href="javascript:neueFarbe('g05')">&nbsp;<br />Wo komme ich vor?<br />&nbsp;</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g06" class="standardp"><a href="javascript:neueFarbe('g06')">&nbsp;<br />Schätzfrage<br />&nbsp;</a></div>
+			</div>
+			<div class="reihe">
+				<div id="g11" class="standardf"><a href="javascript:neueFarbe('g11','f11')">10</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g12" class="standardf"><a href="javascript:neueFarbe('g12','f12')">10</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g13" class="standardf"><a href="javascript:neueFarbe('g13','f13')">10</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g14" class="standardf"><a href="javascript:neueFarbe('g14','f14')">10</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g15" class="standardf"><a href="javascript:neueFarbe('g15','f15')">10</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g16" class="standardf"><a href="javascript:neueFarbe('g16','f16')">10</a></div>
+			</div>
+			<div class="reihe">
+				<div id="g21" class="standardf"><a href="javascript:neueFarbe('g21','f21')">20</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g22" class="standardf"><a href="javascript:neueFarbe('g22','f22')">20</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g23" class="standardf"><a href="javascript:neueFarbe('g23','f23')">20</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g24" class="standardf"><a href="javascript:neueFarbe('g24','f24')">20</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g25" class="standardf"><a href="javascript:neueFarbe('g25','f25')">20</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g26" class="standardf"><a href="javascript:neueFarbe('g26','f26')">20</a></div>
+			</div>
+			<div class="reihe">
+				<div id="g31" class="standardf"><a href="javascript:neueFarbe('g31','f31')">30</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g32" class="standardf"><a href="javascript:neueFarbe('g32','f32')">30</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g33" class="standardf"><a href="javascript:neueFarbe('g33','f33')">30</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g34" class="standardf"><a href="javascript:neueFarbe('g34','f34')">30</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g35" class="standardf"><a href="javascript:neueFarbe('g35','f35')">30</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g36" class="standardf"><a href="javascript:neueFarbe('g36','f36')">30</a></div>
+			</div>
+			<div class="reihe">
+				<div id="g41" class="standardf"><a href="javascript:neueFarbe('g41','f41')">40</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g42" class="standardf"><a href="javascript:neueFarbe('g42','f42')">40</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g43" class="standardf"><a href="javascript:neueFarbe('g43','f43')">40</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g44" class="standardf"><a href="javascript:neueFarbe('g44','f44')">40</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g45" class="standardf"><a href="javascript:neueFarbe('g45','f45')">40</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g46" class="standardf"><a href="javascript:neueFarbe('g46','f46')">40</a></div>
+			</div>
+			<div class="reihe">
+				<div id="g51" class="standardf"><a href="javascript:neueFarbe('g51','f51')">50</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g52" class="standardf"><a href="javascript:neueFarbe('g52','f52')">50</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g53" class="standardf"><a href="javascript:neueFarbe('g53','f53')">50</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g54" class="standardf"><a href="javascript:neueFarbe('g54','f54')">50</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g55" class="standardf"><a href="javascript:neueFarbe('g55','f55')">50</a></div>
+				<div style="width: 8px; float: left;">&nbsp;</div>
+				<div id="g56" class="standardf"><a href="javascript:neueFarbe('g56','f56')">50</a></div>
+			</div>
+	</div>
+	</body>
+</html>
