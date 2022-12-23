@@ -2,6 +2,8 @@
 
 Ein Spiel fürs Abendprogramm der Juniors
 
+A Fork of: https://github.com/mc706/javascript-jeopardy
+
 ## javascript jeopardy
 
 ===================
